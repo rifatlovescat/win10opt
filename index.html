@@ -73,41 +73,8 @@
 
   <main class="flex-grow max-w-5xl w-full mx-auto px-4 py-5 sm:py-7 space-y-3.5">
     
-    <!-- Real-time Filter & Search Bar -->
-    <div class="flex flex-col sm:flex-row gap-2.5 items-stretch sm:items-center justify-between bg-slate-900/60 p-2.5 rounded-xl border border-slate-800">
-      <div class="relative flex-grow">
-        <svg class="w-4 h-4 absolute left-3 top-2.5 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/>
-        </svg>
-        <input 
-          type="text" 
-          id="search-input" 
-          oninput="filterModules()" 
-          placeholder="Filter optimization modules (e.g., Photoshop, RAM, Network, Display)..." 
-          class="w-full bg-slate-950 border border-slate-800 text-slate-200 text-xs sm:text-sm pl-9 pr-3 py-1.5 rounded-lg focus:outline-none focus:border-cyan-500 transition-colors"
-        >
-      </div>
-      <div class="flex items-center gap-1.5 overflow-x-auto text-[11px] pb-1 sm:pb-0">
-        <button onclick="setFilter('all')" class="category-btn px-2.5 py-1 rounded-md bg-cyan-950/70 text-cyan-300 border border-cyan-800 font-medium">All (12)</button>
-        <button onclick="setFilter('os')" class="category-btn px-2.5 py-1 rounded-md bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700">OS & System</button>
-        <button onclick="setFilter('creative')" class="category-btn px-2.5 py-1 rounded-md bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700">Creative Apps</button>
-        <button onclick="setFilter('display')" class="category-btn px-2.5 py-1 rounded-md bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700">Display & Color</button>
-      </div>
-    </div>
-
-    <!-- Target Profile Banner -->
-    <div class="rounded-xl border border-cyan-900/50 bg-cyan-950/20 p-3.5 sm:p-4 text-xs sm:text-sm text-cyan-200/90 flex items-start gap-3">
-      <svg class="w-5 h-5 text-cyan-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/>
-      </svg>
-      <div>
-        <p class="font-semibold text-cyan-300">Target Profile: 100% Workstation Stability & Zero Bloat</p>
-        <p class="text-slate-300 mt-0.5">Optimized for Adobe Photoshop, Illustrator, web dev local servers, browser dev tools, and accurate color reproduction. Destructive gaming scripts and unstable registry strippers are intentionally omitted.</p>
-      </div>
-    </div>
-
     <!-- MODULE 01: Base Drivers & OEM Clean Install -->
-    <details class="mod-card group border border-slate-800 rounded-xl bg-slate-900/75 overflow-hidden transition-all duration-200" data-category="os" open>
+    <details class="mod-card group border border-slate-800 rounded-xl bg-slate-900/75 overflow-hidden transition-all duration-200" open>
       <summary class="flex items-center justify-between p-3.5 sm:p-4 cursor-pointer bg-slate-900/90 hover:bg-slate-850 select-none">
         <div class="flex items-center gap-3">
           <span class="w-7 h-7 rounded-lg bg-emerald-950 border border-emerald-800 text-emerald-400 text-xs font-mono font-bold flex items-center justify-center shrink-0">01</span>
@@ -481,7 +448,7 @@
     </details>
 
     <!-- MODULE 12: Network Latency & Visual Composition -->
-    <details class="mod-card group border border-slate-800 rounded-xl bg-slate-900/75 overflow-hidden transition-all duration-200" data-category="os">
+    <details class="mod-card group border border-slate-800 rounded-xl bg-slate-900/75 overflow-hidden transition-all duration-200">
       <summary class="flex items-center justify-between p-3.5 sm:p-4 cursor-pointer bg-slate-900/90 hover:bg-slate-850 select-none">
         <div class="flex items-center gap-3">
           <span class="w-7 h-7 rounded-lg bg-sky-950 border border-sky-800 text-sky-400 text-xs font-mono font-bold flex items-center justify-center shrink-0">12</span>
@@ -515,64 +482,6 @@
       </div>
     </details>
 
-    <!-- Quick Execution Audit Table -->
-    <div class="mt-6 border border-slate-800 rounded-xl bg-slate-900/60 p-4 sm:p-5">
-      <h3 class="text-sm sm:text-base font-semibold text-white mb-3 flex items-center gap-2">
-        <svg class="w-4 h-4 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
-          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-        </svg>
-        Master Architecture Audit
-      </h3>
-      <div class="overflow-x-auto custom-scrollbar">
-        <table class="w-full text-left text-xs sm:text-sm border-collapse">
-          <thead>
-            <tr class="border-b border-slate-800 text-slate-400">
-              <th class="py-2 px-3 font-semibold">Tweak / Component</th>
-              <th class="py-2 px-3 font-semibold">Optimal Target Value</th>
-              <th class="py-2 px-3 font-semibold">Primary Benefit</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-slate-800/60 text-slate-300">
-            <tr>
-              <td class="py-2.5 px-3 font-medium text-white">Fast Startup</td>
-              <td class="py-2.5 px-3 text-rose-400 font-mono">Disabled</td>
-              <td class="py-2.5 px-3">Prevents sleep freeze & kernel memory leaks</td>
-            </tr>
-            <tr>
-              <td class="py-2.5 px-3 font-medium text-white">Virtual Memory (Pagefile)</td>
-              <td class="py-2.5 px-3 text-cyan-300 font-mono">Static 8192 - 16384 MB</td>
-              <td class="py-2.5 px-3">Zero stutter on heavy raster/vector files</td>
-            </tr>
-            <tr>
-              <td class="py-2.5 px-3 font-medium text-white">Photoshop RAM Limit</td>
-              <td class="py-2.5 px-3 text-cyan-300 font-mono">60% - 65% Allocation</td>
-              <td class="py-2.5 px-3">Smooth multitasking alongside browser & Figma</td>
-            </tr>
-            <tr>
-              <td class="py-2.5 px-3 font-medium text-white">Illustrator Animated Zoom</td>
-              <td class="py-2.5 px-3 text-rose-400 font-mono">Disabled</td>
-              <td class="py-2.5 px-3">Removes UI micro-stutters on integrated graphics</td>
-            </tr>
-            <tr>
-              <td class="py-2.5 px-3 font-medium text-white">Intel / AMD DPST</td>
-              <td class="py-2.5 px-3 text-rose-400 font-mono">Disabled</td>
-              <td class="py-2.5 px-3">Eliminates dynamic contrast shifts on design artboards</td>
-            </tr>
-            <tr>
-              <td class="py-2.5 px-3 font-medium text-white">Defender Exclusions</td>
-              <td class="py-2.5 px-3 text-emerald-400 font-mono">Active Project Folders</td>
-              <td class="py-2.5 px-3">Eliminates 100% CPU spikes during saves and builds</td>
-            </tr>
-            <tr>
-              <td class="py-2.5 px-3 font-medium text-white">LTSC Telemetry</td>
-              <td class="py-2.5 px-3 text-emerald-400 font-mono">Tier 0 (Security)</td>
-              <td class="py-2.5 px-3">Native enterprise-level zero background reporting</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
   </main>
 
   <footer class="border-t border-slate-800 mt-auto py-4 text-center text-xs text-slate-500">
@@ -587,39 +496,6 @@
           item.setAttribute('open', '');
         } else {
           item.removeAttribute('open');
-        }
-      });
-    }
-
-    function setFilter(category) {
-      const buttons = document.querySelectorAll('.category-btn');
-      buttons.forEach(btn => {
-        btn.classList.remove('bg-cyan-950/70', 'text-cyan-300', 'border-cyan-800');
-        btn.classList.add('bg-slate-800/80', 'text-slate-300', 'border-slate-700');
-      });
-
-      event.target.classList.remove('bg-slate-800/80', 'text-slate-300', 'border-slate-700');
-      event.target.classList.add('bg-cyan-950/70', 'text-cyan-300', 'border-cyan-800');
-
-      const cards = document.querySelectorAll('.mod-card');
-      cards.forEach(card => {
-        if (category === 'all' || card.getAttribute('data-category') === category) {
-          card.style.display = 'block';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    }
-
-    function filterModules() {
-      const query = document.getElementById('search-input').value.toLowerCase();
-      const cards = document.querySelectorAll('.mod-card');
-      cards.forEach(card => {
-        const text = card.innerText.toLowerCase();
-        if (text.includes(query)) {
-          card.style.display = 'block';
-        } else {
-          card.style.display = 'none';
         }
       });
     }
