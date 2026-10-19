@@ -41,6 +41,23 @@
     .custom-scrollbar::-webkit-scrollbar-thumb:hover {
       background: #475569;
     }
+    /* Mobile-only zero-wasted-space flat overrides */
+    @media (max-width: 639px) {
+      .mobile-flat {
+        background-color: transparent !important;
+        border: none !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        padding-top: 0.5rem !important;
+        padding-bottom: 0.5rem !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+      }
+      .mobile-flat-divider {
+        border-top: 1px solid rgba(51, 65, 85, 0.45);
+        padding-top: 0.75rem;
+      }
+    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col antialiased selection:bg-cyan-500 selection:text-white">
@@ -59,19 +76,21 @@
           <p class="text-[11px] sm:text-xs text-slate-400">Complete Graphic Design, Web Authoring & Stability Protocol</p>
         </div>
       </div>
-      <div class="flex items-center gap-2">
-        <span id="progress-indicator" class="text-[11px] text-slate-400 font-mono hidden sm:inline-block">0/12 done</span>
-        <button onclick="toggleAllPanels(true)" class="text-[11px] sm:text-xs font-medium px-2.5 py-1.5 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors border border-slate-700/60">
+      <!-- Desktop header controls: Hidden on mobile, replaced by mobile floating dock -->
+      <div class="hidden sm:flex items-center gap-2">
+        <span id="progress-indicator" class="text-[11px] text-slate-400 font-mono">0/12 done</span>
+        <button onclick="toggleAllPanels(true)" class="text-xs font-medium px-2.5 py-1.5 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors border border-slate-700/60 shadow-sm active:scale-95">
           Expand All
         </button>
-        <button onclick="toggleAllPanels(false)" class="text-[11px] sm:text-xs font-medium px-2.5 py-1.5 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors border border-slate-700/60">
+        <button onclick="toggleAllPanels(false)" class="text-xs font-medium px-2.5 py-1.5 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors border border-slate-700/60 shadow-sm active:scale-95">
           Collapse All
         </button>
       </div>
     </div>
   </header>
 
-  <main class="flex-grow max-w-5xl w-full mx-auto px-4 py-5 sm:py-7 space-y-3.5">
+  <!-- Main container with added bottom padding on mobile to clear the floating action dock -->
+  <main class="flex-grow max-w-5xl w-full mx-auto px-4 py-5 sm:py-7 space-y-3.5 pb-24 sm:pb-8">
     
     <!-- MODULE 01: Base Drivers & OEM Clean Install -->
     <details class="mod-card group border border-slate-800 rounded-xl bg-slate-900/75 overflow-hidden transition-all duration-200" open>
@@ -84,11 +103,12 @@
           </div>
         </div>
         <div class="flex items-center gap-2">
-          <input type="checkbox" onclick="event.stopPropagation(); updateProgress();" class="mod-checkbox w-4 h-4 rounded bg-slate-950 border-slate-700 text-cyan-500 focus:ring-0 cursor-pointer" title="Mark as completed">
+          <!-- Checkbox hidden on mobile screens (< sm) -->
+          <input type="checkbox" onclick="event.stopPropagation(); updateProgress();" class="mod-checkbox hidden sm:inline-block w-4 h-4 rounded bg-slate-950 border-slate-700 text-cyan-500 focus:ring-0 cursor-pointer" title="Mark as completed">
           <svg class="chevron w-5 h-5 text-slate-400 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
         </div>
       </summary>
-      <div class="p-4 border-t border-slate-800 bg-slate-950/40 space-y-3.5 text-xs sm:text-sm">
+      <div class="p-3.5 sm:p-4 border-t border-slate-800 bg-slate-950/40 space-y-3 text-xs sm:text-sm">
         <div class="space-y-1.5">
           <h3 class="font-semibold text-slate-200 flex items-center gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Step 1.1: Install WHQL Drivers via Windows Update
@@ -112,7 +132,7 @@
             <li><strong class="text-white">AMD Graphics:</strong> Select <strong class="text-cyan-300">Minimal Install</strong> or <strong class="text-cyan-300">Driver Only</strong> to bypass Radeon Software gaming telemetry.</li>
           </ul>
         </div>
-        <div class="p-3 bg-slate-900 border border-slate-800 rounded-lg text-slate-300">
+        <div class="mobile-flat p-3 sm:bg-slate-900 sm:border sm:border-slate-800 sm:rounded-lg text-slate-300 mobile-flat-divider sm:pt-3">
           <strong class="text-slate-100">Verification:</strong> Press <code class="bg-slate-800 px-1 py-0.5 rounded text-cyan-300">Win + X</code> &rarr; <strong class="text-white">Device Manager</strong>. Confirm zero unknown devices or yellow exclamation marks (<code class="text-amber-400 font-bold">!</code>).
         </div>
       </div>
@@ -129,7 +149,8 @@
           </div>
         </div>
         <div class="flex items-center gap-2">
-          <input type="checkbox" onclick="event.stopPropagation(); updateProgress();" class="mod-checkbox w-4 h-4 rounded bg-slate-950 border-slate-700 text-cyan-500 focus:ring-0 cursor-pointer" title="Mark as completed">
+          <!-- Checkbox hidden on mobile screens (< sm) -->
+          <input type="checkbox" onclick="event.stopPropagation(); updateProgress();" class="mod-checkbox hidden sm:inline-block w-4 h-4 rounded bg-slate-950 border-slate-700 text-cyan-500 focus:ring-0 cursor-pointer" title="Mark as completed">
           <svg class="chevron w-5 h-5 text-slate-400 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
         </div>
       </summary>
@@ -170,7 +191,8 @@
           </div>
         </div>
         <div class="flex items-center gap-2">
-          <input type="checkbox" onclick="event.stopPropagation(); updateProgress();" class="mod-checkbox w-4 h-4 rounded bg-slate-950 border-slate-700 text-cyan-500 focus:ring-0 cursor-pointer" title="Mark as completed">
+          <!-- Checkbox hidden on mobile screens (< sm) -->
+          <input type="checkbox" onclick="event.stopPropagation(); updateProgress();" class="mod-checkbox hidden sm:inline-block w-4 h-4 rounded bg-slate-950 border-slate-700 text-cyan-500 focus:ring-0 cursor-pointer" title="Mark as completed">
           <svg class="chevron w-5 h-5 text-slate-400 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
         </div>
       </summary>
@@ -203,28 +225,30 @@
           </div>
         </div>
         <div class="flex items-center gap-2">
-          <input type="checkbox" onclick="event.stopPropagation(); updateProgress();" class="mod-checkbox w-4 h-4 rounded bg-slate-950 border-slate-700 text-cyan-500 focus:ring-0 cursor-pointer" title="Mark as completed">
+          <!-- Checkbox hidden on mobile screens (< sm) -->
+          <input type="checkbox" onclick="event.stopPropagation(); updateProgress();" class="mod-checkbox hidden sm:inline-block w-4 h-4 rounded bg-slate-950 border-slate-700 text-cyan-500 focus:ring-0 cursor-pointer" title="Mark as completed">
           <svg class="chevron w-5 h-5 text-slate-400 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
         </div>
       </summary>
-      <div class="p-4 border-t border-slate-800 bg-slate-950/40 space-y-3.5 text-xs sm:text-sm">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
-          <div class="p-3 bg-slate-900/90 border border-slate-800 rounded-lg space-y-2">
-            <span class="text-xs font-mono bg-violet-900/80 text-violet-300 px-2 py-0.5 rounded font-bold">Photoshop (Edit &gt; Prefs &gt; Performance)</span>
-            <ul class="space-y-1.5 text-slate-300">
-              <li><strong class="text-white">RAM Allocation:</strong> Set slider to <strong class="text-cyan-300">60% &ndash; 65%</strong>. Leaving at default 70-80% starves your browser and local servers.</li>
-              <li><strong class="text-white">History States:</strong> Reduce from 50 to <strong class="text-cyan-300">20 or 25</strong> (halves RAM layer footprint).</li>
-              <li><strong class="text-white">Cache Levels:</strong> Set to <strong class="text-cyan-300">4</strong> (balanced for web graphics and moderate sizes).</li>
-              <li><strong class="text-white">Scratch Disks:</strong> Keep minimum <strong class="text-cyan-300">40 GB</strong> free space on drive C:.</li>
+      <div class="p-3.5 sm:p-4 border-t border-slate-800 bg-slate-950/40 space-y-3.5 text-xs sm:text-sm">
+        <!-- Direct UI on mobile: removed inner double card boxes, flat stacked -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-3.5">
+          <div class="mobile-flat p-0 sm:p-3 sm:bg-slate-900/90 sm:border sm:border-slate-800 sm:rounded-lg space-y-2">
+            <span class="inline-block text-xs font-mono bg-violet-900/80 text-violet-300 px-2 py-0.5 rounded font-bold">Photoshop (Edit &gt; Prefs &gt; Performance)</span>
+            <ul class="space-y-1.5 text-slate-300 pl-1 sm:pl-0">
+              <li>&bull; <strong class="text-white">RAM Allocation:</strong> Set slider to <strong class="text-cyan-300">60% &ndash; 65%</strong>. Avoid default 70-80% to keep browser and dev tools responsive.</li>
+              <li>&bull; <strong class="text-white">History States:</strong> Reduce from 50 to <strong class="text-cyan-300">20 or 25</strong> (halves RAM layer footprint).</li>
+              <li>&bull; <strong class="text-white">Cache Levels:</strong> Set to <strong class="text-cyan-300">4</strong> (balanced for web graphics).</li>
+              <li>&bull; <strong class="text-white">Scratch Disks:</strong> Keep minimum <strong class="text-cyan-300">40 GB</strong> free space on drive C:.</li>
             </ul>
           </div>
 
-          <div class="p-3 bg-slate-900/90 border border-slate-800 rounded-lg space-y-2">
-            <span class="text-xs font-mono bg-amber-900/80 text-amber-300 px-2 py-0.5 rounded font-bold">Illustrator (Edit &gt; Prefs &gt; Performance)</span>
-            <ul class="space-y-1.5 text-slate-300">
-              <li><strong class="text-white">GPU Performance:</strong> Keep <strong class="text-emerald-400">Checked</strong> to accelerate path calculations.</li>
-              <li><strong class="text-white">Animated Zoom:</strong> Set to <strong class="text-rose-400">Unchecked</strong>. Smooth zoom causes micro-stutters and frame drops on integrated graphics.</li>
-              <li><strong class="text-white">File Handling:</strong> Under <em>File Handling & Clipboard</em>, uncheck <em>Automatically Save Recovery Data for complex documents</em> if saving causes lag.</li>
+          <div class="mobile-flat mobile-flat-divider sm:border-t-0 p-0 sm:p-3 sm:bg-slate-900/90 sm:border sm:border-slate-800 sm:rounded-lg space-y-2">
+            <span class="inline-block text-xs font-mono bg-amber-900/80 text-amber-300 px-2 py-0.5 rounded font-bold">Illustrator (Edit &gt; Prefs &gt; Performance)</span>
+            <ul class="space-y-1.5 text-slate-300 pl-1 sm:pl-0">
+              <li>&bull; <strong class="text-white">GPU Performance:</strong> Keep <strong class="text-emerald-400">Checked</strong> to accelerate path calculations.</li>
+              <li>&bull; <strong class="text-white">Animated Zoom:</strong> Set to <strong class="text-rose-400">Unchecked</strong> to avoid iGPU micro-stutters.</li>
+              <li>&bull; <strong class="text-white">File Handling:</strong> Under <em>File Handling & Clipboard</em>, uncheck <em>Automatically Save Recovery Data for complex documents</em> if saving causes lag.</li>
             </ul>
           </div>
         </div>
@@ -242,7 +266,8 @@
           </div>
         </div>
         <div class="flex items-center gap-2">
-          <input type="checkbox" onclick="event.stopPropagation(); updateProgress();" class="mod-checkbox w-4 h-4 rounded bg-slate-950 border-slate-700 text-cyan-500 focus:ring-0 cursor-pointer" title="Mark as completed">
+          <!-- Checkbox hidden on mobile screens (< sm) -->
+          <input type="checkbox" onclick="event.stopPropagation(); updateProgress();" class="mod-checkbox hidden sm:inline-block w-4 h-4 rounded bg-slate-950 border-slate-700 text-cyan-500 focus:ring-0 cursor-pointer" title="Mark as completed">
           <svg class="chevron w-5 h-5 text-slate-400 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
         </div>
       </summary>
@@ -269,7 +294,8 @@
           </div>
         </div>
         <div class="flex items-center gap-2">
-          <input type="checkbox" onclick="event.stopPropagation(); updateProgress();" class="mod-checkbox w-4 h-4 rounded bg-slate-950 border-slate-700 text-cyan-500 focus:ring-0 cursor-pointer" title="Mark as completed">
+          <!-- Checkbox hidden on mobile screens (< sm) -->
+          <input type="checkbox" onclick="event.stopPropagation(); updateProgress();" class="mod-checkbox hidden sm:inline-block w-4 h-4 rounded bg-slate-950 border-slate-700 text-cyan-500 focus:ring-0 cursor-pointer" title="Mark as completed">
           <svg class="chevron w-5 h-5 text-slate-400 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
         </div>
       </summary>
@@ -305,7 +331,8 @@
           </div>
         </div>
         <div class="flex items-center gap-2">
-          <input type="checkbox" onclick="event.stopPropagation(); updateProgress();" class="mod-checkbox w-4 h-4 rounded bg-slate-950 border-slate-700 text-cyan-500 focus:ring-0 cursor-pointer" title="Mark as completed">
+          <!-- Checkbox hidden on mobile screens (< sm) -->
+          <input type="checkbox" onclick="event.stopPropagation(); updateProgress();" class="mod-checkbox hidden sm:inline-block w-4 h-4 rounded bg-slate-950 border-slate-700 text-cyan-500 focus:ring-0 cursor-pointer" title="Mark as completed">
           <svg class="chevron w-5 h-5 text-slate-400 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
         </div>
       </summary>
@@ -342,7 +369,8 @@
           </div>
         </div>
         <div class="flex items-center gap-2">
-          <input type="checkbox" onclick="event.stopPropagation(); updateProgress();" class="mod-checkbox w-4 h-4 rounded bg-slate-950 border-slate-700 text-cyan-500 focus:ring-0 cursor-pointer" title="Mark as completed">
+          <!-- Checkbox hidden on mobile screens (< sm) -->
+          <input type="checkbox" onclick="event.stopPropagation(); updateProgress();" class="mod-checkbox hidden sm:inline-block w-4 h-4 rounded bg-slate-950 border-slate-700 text-cyan-500 focus:ring-0 cursor-pointer" title="Mark as completed">
           <svg class="chevron w-5 h-5 text-slate-400 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
         </div>
       </summary>
@@ -371,7 +399,8 @@
           </div>
         </div>
         <div class="flex items-center gap-2">
-          <input type="checkbox" onclick="event.stopPropagation(); updateProgress();" class="mod-checkbox w-4 h-4 rounded bg-slate-950 border-slate-700 text-cyan-500 focus:ring-0 cursor-pointer" title="Mark as completed">
+          <!-- Checkbox hidden on mobile screens (< sm) -->
+          <input type="checkbox" onclick="event.stopPropagation(); updateProgress();" class="mod-checkbox hidden sm:inline-block w-4 h-4 rounded bg-slate-950 border-slate-700 text-cyan-500 focus:ring-0 cursor-pointer" title="Mark as completed">
           <svg class="chevron w-5 h-5 text-slate-400 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
         </div>
       </summary>
@@ -398,7 +427,8 @@
           </div>
         </div>
         <div class="flex items-center gap-2">
-          <input type="checkbox" onclick="event.stopPropagation(); updateProgress();" class="mod-checkbox w-4 h-4 rounded bg-slate-950 border-slate-700 text-cyan-500 focus:ring-0 cursor-pointer" title="Mark as completed">
+          <!-- Checkbox hidden on mobile screens (< sm) -->
+          <input type="checkbox" onclick="event.stopPropagation(); updateProgress();" class="mod-checkbox hidden sm:inline-block w-4 h-4 rounded bg-slate-950 border-slate-700 text-cyan-500 focus:ring-0 cursor-pointer" title="Mark as completed">
           <svg class="chevron w-5 h-5 text-slate-400 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
         </div>
       </summary>
@@ -434,7 +464,8 @@
           </div>
         </div>
         <div class="flex items-center gap-2">
-          <input type="checkbox" onclick="event.stopPropagation(); updateProgress();" class="mod-checkbox w-4 h-4 rounded bg-slate-950 border-slate-700 text-cyan-500 focus:ring-0 cursor-pointer" title="Mark as completed">
+          <!-- Checkbox hidden on mobile screens (< sm) -->
+          <input type="checkbox" onclick="event.stopPropagation(); updateProgress();" class="mod-checkbox hidden sm:inline-block w-4 h-4 rounded bg-slate-950 border-slate-700 text-cyan-500 focus:ring-0 cursor-pointer" title="Mark as completed">
           <svg class="chevron w-5 h-5 text-slate-400 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
         </div>
       </summary>
@@ -458,7 +489,8 @@
           </div>
         </div>
         <div class="flex items-center gap-2">
-          <input type="checkbox" onclick="event.stopPropagation(); updateProgress();" class="mod-checkbox w-4 h-4 rounded bg-slate-950 border-slate-700 text-cyan-500 focus:ring-0 cursor-pointer" title="Mark as completed">
+          <!-- Checkbox hidden on mobile screens (< sm) -->
+          <input type="checkbox" onclick="event.stopPropagation(); updateProgress();" class="mod-checkbox hidden sm:inline-block w-4 h-4 rounded bg-slate-950 border-slate-700 text-cyan-500 focus:ring-0 cursor-pointer" title="Mark as completed">
           <svg class="chevron w-5 h-5 text-slate-400 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
         </div>
       </summary>
@@ -484,7 +516,21 @@
 
   </main>
 
-  <footer class="border-t border-slate-800 mt-auto py-4 text-center text-xs text-slate-500">
+  <!-- Mobile Floating Action Bar for Expand / Collapse -->
+  <div class="sm:hidden fixed bottom-4 inset-x-0 z-40 px-4 flex justify-center pointer-events-none">
+    <div class="pointer-events-auto flex items-center gap-2.5 p-1.5 px-3 bg-slate-950/90 backdrop-blur-lg border border-slate-700/80 rounded-2xl shadow-2xl shadow-cyan-950/30">
+      <button onclick="toggleAllPanels(true)" class="flex items-center gap-1.5 text-xs font-medium px-4 py-2.5 rounded-xl bg-slate-800 active:bg-slate-700 text-slate-100 border border-slate-700 shadow-sm active:scale-95 transition-all">
+        <svg class="w-3.5 h-3.5 text-cyan-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+        Expand All
+      </button>
+      <button onclick="toggleAllPanels(false)" class="flex items-center gap-1.5 text-xs font-medium px-4 py-2.5 rounded-xl bg-slate-800 active:bg-slate-700 text-slate-100 border border-slate-700 shadow-sm active:scale-95 transition-all">
+        <svg class="w-3.5 h-3.5 text-slate-400 rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+        Collapse All
+      </button>
+    </div>
+  </div>
+
+  <footer class="border-t border-slate-800 mt-auto py-4 text-center text-xs text-slate-500 mb-16 sm:mb-0">
     Windows 10 IoT Enterprise LTSC 2021 &bull; Creative Workstation Architecture Protocol
   </footer>
 
